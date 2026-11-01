@@ -1,0 +1,100 @@
+==================
+Effects with a resume mode
+==================
+
+effect choose(): Bool resume ω
+effect ask(q: Text): Text resume <=1
+
+---
+
+(source_file
+  (effect_declaration
+    (identifier)
+    (parameters)
+    (identifier)
+    (effect_mode))
+  (effect_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (identifier)))
+    (identifier)
+    (effect_mode
+      (number))))
+
+==================
+While, if and perform
+==================
+
+fn pick(n: i64): i64 {
+  var i := 0
+  while i < n {
+    i := i + 1
+  }
+  if perform choose() { i } else { 0 }
+}
+
+---
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (identifier)))
+    (identifier)
+    (block
+      (var_statement
+        (identifier)
+        (number))
+      (while_statement
+        (binary_expression
+          (identifier)
+          (identifier))
+        (block
+          (expression_statement
+            (identifier)
+            (binary_expression
+              (identifier)
+              (number)))))
+      (expression_statement
+        (if_expression
+          (perform_expression
+            (identifier)
+            (arguments))
+          (block
+            (expression_statement
+              (identifier)))
+          (block
+            (expression_statement
+              (number))))))))
+
+==================
+Lambda and syntax literals
+==================
+
+let twice := (n: i64) => n * 2
+let q := quote<`a + b`>
+let r := quote<<`x <`y`> z`>>
+
+---
+
+(source_file
+  (let_statement
+    (identifier)
+    (lambda_expression
+      (parenthesized_expression
+        (item
+          (identifier)
+          (identifier)))
+      (binary_expression
+        (identifier)
+        (number))))
+  (let_statement
+    (identifier)
+    (syntax_literal))
+  (let_statement
+    (identifier)
+    (syntax_literal)))

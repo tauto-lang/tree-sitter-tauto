@@ -1,0 +1,22 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "tauto",
+      "camelcase": "Tauto",
+      "title": "Tauto",
+      "scope": "source.tauto",
+      "file-types": ["taut"],
+      "injection-regex": "^tauto$",
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT OR Apache-2.0",
+    "description": "Tauto grammar for tree-sitter",
+    "links": {
+      "repository": "https://github.com/tauto-lang/tree-sitter-tauto"
+    }
+  }
+}

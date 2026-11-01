@@ -1,0 +1,78 @@
+==================
+Function with a match
+==================
+
+pub fn len<A>(xs: List(A)): Nat {
+  match xs: Nat {
+    Nil => 0
+    Cons(_, rest) => 1 + len(rest)
+  }
+}
+
+---
+
+(source_file
+  (visibility)
+  (function_declaration
+    name: (identifier)
+    (generics (generic name: (identifier)))
+    parameters: (parameters
+      (parameter
+        name: (identifier)
+        type: (call_expression
+          function: (identifier)
+          arguments: (arguments (item (identifier))))))
+    result: (identifier)
+    body: (block
+      (expression_statement
+        (match_expression
+          value: (identifier)
+          type: (identifier)
+          (match_arm
+            pattern: (pattern_path name: (identifier))
+            value: (number))
+          (match_arm
+            pattern: (pattern_path
+              name: (identifier)
+              (pattern_path name: (identifier))
+              (pattern_path name: (identifier)))
+            value: (binary_expression
+              left: (number)
+              right: (call_expression
+                function: (identifier)
+                arguments: (arguments (item (identifier)))))))))))
+
+==================
+Theorem with a quantifier and a calc
+==================
+
+theorem add_zero(n: Nat): ∀ m: Nat. Nat::add(n, m) = n {
+  calc n {
+    = n from Eq::refl(n)
+  }
+}
+
+---
+
+(source_file
+  (theorem_declaration
+    name: (identifier)
+    parameters: (parameters
+      (parameter name: (identifier) type: (identifier)))
+    type: (quantified_expression
+      variable: (identifier)
+      type: (identifier)
+      body: (binary_expression
+        left: (call_expression
+          function: (identifier)
+          arguments: (arguments (item (identifier)) (item (identifier))))
+        right: (identifier)))
+    body: (block
+      (expression_statement
+        (calc_expression
+          (identifier)
+          (calc_step
+            (identifier)
+            (call_expression
+              function: (identifier)
+              arguments: (arguments (item (identifier))))))))))
