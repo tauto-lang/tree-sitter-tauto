@@ -22,28 +22,21 @@ The grammar follows the Tauto compiler's parser, including operator precedence. 
 
 ## Development
 
-Requires Node.js with Corepack and the tree-sitter CLI 0.25.10.
-
-```sh
-corepack enable
-pnpm install --frozen-lockfile
-```
-
-Dependency install scripts are disabled, so the `tree-sitter` binary is not downloaded automatically. Download it from the [v0.25.10 release](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.25.10) and verify its checksum. For example, on macOS (arm64):
+Requires Node.js (to read `grammar.js`) and the tree-sitter CLI 0.25.10. Download the CLI from the [v0.25.10 release](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.25.10) and verify its checksum. For example, on macOS (arm64):
 
 ```sh
 curl -fsSLo tree-sitter.gz https://github.com/tree-sitter/tree-sitter/releases/download/v0.25.10/tree-sitter-macos-arm64.gz
 echo "a6295d469669f6e901b6029ae6c129bd094df582d278c237fada413505cb9c42  tree-sitter.gz" | shasum -a 256 -c
-gunzip -c tree-sitter.gz > node_modules/tree-sitter-cli/tree-sitter && rm tree-sitter.gz
-chmod 755 node_modules/tree-sitter-cli/tree-sitter
+gunzip -c tree-sitter.gz > tree-sitter && rm tree-sitter.gz
+chmod 755 tree-sitter
 ```
 
-Then:
+Put `tree-sitter` on your `PATH`, then:
 
 ```sh
-pnpm run generate   # regenerate src/ from grammar.js
-pnpm run test       # run test/corpus
-pnpm exec tree-sitter parse path/to/file.taut
+tree-sitter generate   # regenerate src/ from grammar.js
+tree-sitter test       # run test/corpus
+tree-sitter parse path/to/file.taut
 ```
 
 The files in `src/` are generated. Regenerate them after changing `grammar.js`.

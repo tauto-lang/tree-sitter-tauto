@@ -3913,6 +3913,10 @@
           "named": true
         },
         {
+          "type": "list_pattern",
+          "named": true
+        },
+        {
           "type": "literal_pattern",
           "named": true
         },
@@ -5328,6 +5332,10 @@
           "named": true
         },
         {
+          "type": "list_pattern",
+          "named": true
+        },
+        {
           "type": "literal_pattern",
           "named": true
         },
@@ -6230,6 +6238,60 @@
     }
   },
   {
+    "type": "list_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "label_pattern",
+          "named": true
+        },
+        {
+          "type": "list_pattern",
+          "named": true
+        },
+        {
+          "type": "list_pattern_rest",
+          "named": true
+        },
+        {
+          "type": "literal_pattern",
+          "named": true
+        },
+        {
+          "type": "or_pattern",
+          "named": true
+        },
+        {
+          "type": "pattern_path",
+          "named": true
+        },
+        {
+          "type": "tuple_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_pattern_rest",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "literal_pattern",
     "named": true,
     "fields": {},
@@ -6443,6 +6505,10 @@
             "named": true
           },
           {
+            "type": "list_pattern",
+            "named": true
+          },
+          {
             "type": "literal_pattern",
             "named": true
           },
@@ -6462,7 +6528,7 @@
       },
       "value": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "anonymous_record",
@@ -7277,6 +7343,10 @@
           "named": true
         },
         {
+          "type": "list_pattern",
+          "named": true
+        },
+        {
           "type": "literal_pattern",
           "named": true
         },
@@ -7357,6 +7427,10 @@
       "types": [
         {
           "type": "label_pattern",
+          "named": true
+        },
+        {
+          "type": "list_pattern",
           "named": true
         },
         {
@@ -7597,6 +7671,10 @@
         },
         {
           "type": "label_pattern",
+          "named": true
+        },
+        {
+          "type": "list_pattern",
           "named": true
         },
         {
@@ -7979,6 +8057,10 @@
         "types": [
           {
             "type": "label_pattern",
+            "named": true
+          },
+          {
+            "type": "list_pattern",
             "named": true
           },
           {
@@ -9379,6 +9461,10 @@
           "named": true
         },
         {
+          "type": "list_pattern",
+          "named": true
+        },
+        {
           "type": "literal_pattern",
           "named": true
         },
@@ -10617,10 +10703,6 @@
   },
   {
     "type": "instance",
-    "named": false
-  },
-  {
-    "type": "law",
     "named": false
   },
   {

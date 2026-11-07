@@ -62,7 +62,7 @@
 ; Keywords
 
 [
-  "fn" "theorem" "axiom" "def" "inductive" "struct" "enum" "effect" "class" "instance" "law"
+  "fn" "theorem" "axiom" "def" "inductive" "struct" "enum" "effect" "class" "instance"
   "module" "extern" "type" "import" "mutual" "macro" "let" "var" "opaque"
 ] @keyword
 

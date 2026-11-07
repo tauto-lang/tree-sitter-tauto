@@ -10,6 +10,6 @@
 (instance_declaration "instance" @context class: (identifier) @name) @item
 (module_declaration "module" @context name: (identifier) @name) @item
 (extern_function "fn" @context name: (identifier) @name) @item
-(law_declaration "law" @context name: (identifier) @name) @item
+(law_declaration "theorem" @context name: (identifier) @name) @item
 (constructor name: (_) @name) @item
 (variant name: (identifier) @name) @item

@@ -22,8 +22,3 @@
 
 # Tests
 !/test/corpus/*.txt
-
-# Dependencies (pnpm)
-!/package.json
-!/pnpm-lock.yaml
-!/pnpm-workspace.yaml

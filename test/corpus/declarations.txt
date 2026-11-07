@@ -76,3 +76,38 @@ theorem add_zero(n: Nat): ∀ m: Nat. Nat::add(n, m) = n {
             (call_expression
               function: (identifier)
               arguments: (arguments (item (identifier))))))))))
+
+==================
+List patterns and an arm being typed
+==================
+
+fn f() {
+  match xs {
+    [] => 0,
+    [x, ..rest] => 1,
+    []
+  }
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters)
+    body: (block
+      (expression_statement
+        (match_expression
+          value: (identifier)
+          (match_arm
+            pattern: (list_pattern)
+            value: (number))
+          (match_arm
+            pattern: (list_pattern
+              (pattern_path
+                name: (identifier))
+              (list_pattern_rest
+                (identifier)))
+            value: (number))
+          (match_arm
+            pattern: (list_pattern)))))))

@@ -309,7 +309,7 @@ module.exports = grammar({
       ),
     law_declaration: ($) =>
       seq(
-        'law',
+        'theorem',
         field('name', $.identifier),
         optional($.generics),
         field('parameters', $.parameters),
@@ -565,8 +565,9 @@ module.exports = grammar({
         seq(
           field('pattern', $._pattern),
           optional(seq('if', field('guard', $._cond_expression))),
-          '=>',
-          field('value', choice($.goal, $._expression)),
+          // `=> value` is optional so that an arm being typed (e.g. `[]` before `=>`) stays inside the
+          // match block instead of closing it early; otherwise editors compute the wrong indentation.
+          optional(seq('=>', field('value', choice($.goal, $._expression)))),
         ),
       ),
     goal: ($) =>
@@ -640,8 +641,16 @@ module.exports = grammar({
     _pattern: ($) => choice($.or_pattern, $._pattern_alt),
     or_pattern: ($) => prec.left(seq($._pattern, '|', $._pattern_alt)),
     _pattern_alt: ($) =>
-      choice($.pattern_path, $.literal_pattern, $.tuple_pattern, $.label_pattern),
+      choice($.pattern_path, $.literal_pattern, $.tuple_pattern, $.list_pattern, $.label_pattern),
     label_pattern: ($) => seq($.tag, $._pattern_alt),
+    // `[x, y, ..rest]` and `[]`: the rest, only last, is a name or `_`.
+    list_pattern: ($) =>
+      seq(
+        '[',
+        optional(choice($.list_pattern_rest, seq(sepBy1(',', $._pattern), optional(seq(',', $.list_pattern_rest))))),
+        ']',
+      ),
+    list_pattern_rest: ($) => seq('..', $.identifier),
     tuple_pattern: ($) => seq('#(', commaList($._pattern), ')'),
     pattern_path: ($) =>
       prec.right(
