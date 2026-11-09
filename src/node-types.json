@@ -6351,6 +6351,10 @@
         {
           "type": "item",
           "named": true
+        },
+        {
+          "type": "syntax_literal",
+          "named": true
         }
       ]
     }

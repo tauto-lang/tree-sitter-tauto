@@ -632,8 +632,12 @@ module.exports = grammar({
     quote_expression: ($) => seq('quote', optional($.identifier), $.block),
     splice_expression: ($) => seq(alias(token(prec(1, '$(')), '$('), $._expression, ')'),
 
+    // `m!(a, b)`, or `m!`x`` with a syntax literal in place of the parentheses.
     macro_call: ($) =>
-      seq(field('macro', $.macro_name), '(', commaList($.item), ')'),
+      seq(
+        field('macro', $.macro_name),
+        choice(seq('(', commaList($.item), ')'), $.syntax_literal),
+      ),
     macro_name: (_) => token(seq(IDENT, '!')),
 
     // Patterns.

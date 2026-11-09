@@ -98,3 +98,27 @@ let r := quote<<`x <`y`> z`>>
   (let_statement
     (identifier)
     (syntax_literal)))
+
+================================================================================
+macro call with a syntax literal and no parentheses
+================================================================================
+
+theorem t(h: f!`a ⊢ b`): f!`a ⊢ b` { x }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (theorem_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (macro_call
+          (macro_name)
+          (syntax_literal))))
+    (macro_call
+      (macro_name)
+      (syntax_literal))
+    (block
+      (expression_statement
+        (identifier)))))
